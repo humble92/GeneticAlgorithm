@@ -1,1 +1,1 @@
-C:/cygwin64/bin/g++.exe  -Wall -Wextra -pedantic -g  -Wl,--enable-auto-import CMakeFiles/GeneticAlgorithm.dir/main.cpp.o  -o GeneticAlgorithm.exe -Wl,--out-implib,libGeneticAlgorithm.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
+C:/cygwin64/bin/g++.exe  -Wall -Wextra -pedantic -g  -Wl,--enable-auto-import CMakeFiles/GeneticAlgorithm.dir/main.cpp.o CMakeFiles/GeneticAlgorithm.dir/city.cpp.o CMakeFiles/GeneticAlgorithm.dir/utils.cpp.o  -o GeneticAlgorithm.exe -Wl,--out-implib,libGeneticAlgorithm.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

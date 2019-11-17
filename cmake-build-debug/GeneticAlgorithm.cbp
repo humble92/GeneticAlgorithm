@@ -80,7 +80,19 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/city.cpp">
+			<Option target="GeneticAlgorithm"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/city.hpp">
+			<Option target="GeneticAlgorithm"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/main.cpp">
+			<Option target="GeneticAlgorithm"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/utils.cpp">
+			<Option target="GeneticAlgorithm"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/utils.hpp">
 			<Option target="GeneticAlgorithm"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/CMakeLists.txt">
