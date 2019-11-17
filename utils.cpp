@@ -1,29 +1,26 @@
 //
 // Created by humbl on 11/13/2019.
 //
-#include <cmath>
 #include <random>
-#include <algorithm>
 #include <fstream>
 #include <sstream>
 #include "utils.hpp"
 
 using namespace std;
 
-double get_distance(city city1, city city2) {
-    return sqrt( pow((city1.getX()-city2.getX()), 2) + pow((city1.getY()-city2.getY()), 2));
-}
-
-string random_name(int n)
-{
-    string str("abcdefghijklmnopqrstuvwxyz");
-    random_device rd;
-    mt19937 generator(rd());
-    shuffle(str.begin(), str.end(), generator);
-    str[0] = toupper(str[0]); //Capitalize the first character
-    int length = n % 5 + 5;
-
-    return str.substr(0, length);    // total length of name
+// setting env. parameters
+void configure::setValue(int idx, int val) {
+    switch(idx) {
+        case 0: this->CITIES_IN_TOUR = val; break;
+        case 1: this->POPULATION_SIZE = val; break;
+        case 2: this->SHUFFLES = val; break;
+        case 3: this->ITERATIONS = val; break;
+        case 4: this->MAP_BOUNDARY = val; break;
+        case 5: this->PARENT_POOL_SIZE = val; break;
+        case 6: this->MUTATION_RATE = val; break;
+        case 7: this->NUMBER_OF_PARENTS = val; break;
+        case 8: this->NUMBER_OF_ELITES = val; break;
+    }
 }
 
 /*
