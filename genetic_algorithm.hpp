@@ -12,13 +12,14 @@
 class genetic_algorithm {
 private:
     vector<city> master_list;
+    vector<city> population;
 
 public:
     genetic_algorithm() = default;
     genetic_algorithm(int numOfCity);
     double get_distance(city city1, city city2);
     string random_name(int n);
-
+    void get_population();
     const vector<city> &getMasterList() const;
 };
 

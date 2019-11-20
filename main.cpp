@@ -22,7 +22,6 @@ int main() {
 
     //prepare test environment
     genetic_algorithm algo(cfg.CITIES_IN_TOUR);
-
     for_each(algo.getMasterList().begin(), algo.getMasterList().end(), print);
 
     return 0;

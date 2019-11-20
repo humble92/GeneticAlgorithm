@@ -44,8 +44,14 @@ string genetic_algorithm::random_name(int n)
     return str.substr(0, length);    // total length of name
 }
 
+//getter of master_list
 const vector<city> &genetic_algorithm::getMasterList() const {
     return master_list;
+}
+
+//make population
+void genetic_algorithm::get_population() {
+
 }
 
 #include "genetic_algorithm.hpp"
