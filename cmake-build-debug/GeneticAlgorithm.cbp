@@ -95,6 +95,12 @@
 		<Unit filename="/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/main.cpp">
 			<Option target="GeneticAlgorithm"/>
 		</Unit>
+		<Unit filename="/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/tour.cpp">
+			<Option target="GeneticAlgorithm"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/tour.hpp">
+			<Option target="GeneticAlgorithm"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/utils.cpp">
 			<Option target="GeneticAlgorithm"/>
 		</Unit>

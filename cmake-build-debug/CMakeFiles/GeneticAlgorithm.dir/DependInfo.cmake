@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/city.cpp" "/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/cmake-build-debug/CMakeFiles/GeneticAlgorithm.dir/city.cpp.o"
   "/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/genetic_algorithm.cpp" "/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/cmake-build-debug/CMakeFiles/GeneticAlgorithm.dir/genetic_algorithm.cpp.o"
   "/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/main.cpp" "/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/cmake-build-debug/CMakeFiles/GeneticAlgorithm.dir/main.cpp.o"
+  "/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/tour.cpp" "/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/cmake-build-debug/CMakeFiles/GeneticAlgorithm.dir/tour.cpp.o"
   "/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/utils.cpp" "/cygdrive/c/Project/repos/CLionProjects/Lab/GeneticAlgorithm/cmake-build-debug/CMakeFiles/GeneticAlgorithm.dir/utils.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

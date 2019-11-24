@@ -28,8 +28,9 @@ int main() {
     algo.make_population(cfg.POPULATION_SIZE);
     for (int i = 0; i < 2; ++i) {
         cout << endl;
-        for_each(algo.getPopulation().at(i).begin(), algo.getPopulation().at(i).end(), print);
+        for_each(algo.getPopulation().at(i).getCityList().begin(), algo.getPopulation().at(i).getCityList().end(), print);
     }
+    algo.sort_population();
 
     return 0;
 }

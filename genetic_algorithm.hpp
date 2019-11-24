@@ -7,25 +7,27 @@
 
 #include <vector>
 
-#include "city.hpp"
+#include "tour.hpp"
 
 class genetic_algorithm {
 private:
     vector<city> master_list;
-    vector<vector<city>> population;
+    vector<tour> population;
+    int random_num(int i);
+    string random_name(int n);
+    bool evaluate_fitness(tour & tour1, tour & tour2);
 
 public:
     genetic_algorithm() = default;
     genetic_algorithm(int numOfCity);
-    double get_distance(city city1, city city2);
-    int random_num(int i);
-    string random_name(int n);
-    void make_population(int i);
+
     const vector<city> &getMasterList() const;
+    const vector<tour> &getPopulation() const;
+    void setPopulation(const vector<tour> &population);
 
-    const vector<vector<city>> &getPopulation() const;
+    void make_population(int i);
+    void sort_population();
 
-    void setPopulation(const vector<vector<city>> &population);
 };
 
 

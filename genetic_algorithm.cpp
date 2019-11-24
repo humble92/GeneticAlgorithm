@@ -4,7 +4,6 @@
 #include <random>
 #include <algorithm>
 #include <functional>
-#include <cmath>
 
 #include "genetic_algorithm.hpp"
 
@@ -25,11 +24,6 @@ genetic_algorithm::genetic_algorithm(int numOfCity) {
         city new_city(random_name(i), coordinate_generator(), coordinate_generator());
         master_list.push_back(new_city);
     }
-}
-
-// return distance between two cities
-double genetic_algorithm::get_distance(city city1, city city2) {
-    return sqrt( pow((city1.getX()-city2.getX()), 2) + pow((city1.getY()-city2.getY()), 2));
 }
 
 // random number generator between 0 ~ n -1
@@ -61,12 +55,21 @@ void genetic_algorithm::make_population(int i) {
     }
 }
 
-const vector<vector<city>> &genetic_algorithm::getPopulation() const {
+const vector<tour> &genetic_algorithm::getPopulation() const {
     return population;
 }
 
-void genetic_algorithm::setPopulation(const vector<vector<city>> &population) {
+void genetic_algorithm::setPopulation(const vector<tour> &population) {
     genetic_algorithm::population = population;
+}
+
+bool genetic_algorithm::evaluate_fitness(tour & tour1, tour & tour2) {
+    return (tour1.get_total_mileage() < tour2.get_total_mileage());
+}
+
+
+void genetic_algorithm::sort_population() {
+//    sort(population.begin(), population.end(), evaluate_fitness);
 }
 
 #include "genetic_algorithm.hpp"
