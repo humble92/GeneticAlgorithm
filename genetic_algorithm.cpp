@@ -51,7 +51,8 @@ const vector<city> &genetic_algorithm::getMasterList() const {
 void genetic_algorithm::make_population(int i) {
     for (int j = 0; j < i; ++j) {
         random_shuffle(master_list.begin(), master_list.end());
-        population.push_back(master_list);
+        tour t{master_list};
+        population.push_back(t);
     }
 }
 
@@ -63,13 +64,12 @@ void genetic_algorithm::setPopulation(const vector<tour> &population) {
     genetic_algorithm::population = population;
 }
 
-bool genetic_algorithm::evaluate_fitness(tour & tour1, tour & tour2) {
-    return (tour1.get_total_mileage() < tour2.get_total_mileage());
+void genetic_algorithm::sort_population() {
+    sort(population.begin(), population.end());
 }
 
-
-void genetic_algorithm::sort_population() {
-//    sort(population.begin(), population.end(), evaluate_fitness);
+bool genetic_algorithm::evaluate_fitness(tour & tour1, tour & tour2) {
+    return (tour1.get_total_mileage() < tour2.get_total_mileage());
 }
 
 #include "genetic_algorithm.hpp"

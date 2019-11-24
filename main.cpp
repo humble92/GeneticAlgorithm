@@ -26,11 +26,14 @@ int main() {
 
     //make population, test 2 population printing
     algo.make_population(cfg.POPULATION_SIZE);
-    for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < cfg.POPULATION_SIZE; ++i) {
         cout << endl;
-        for_each(algo.getPopulation().at(i).getCityList().begin(), algo.getPopulation().at(i).getCityList().end(), print);
+        //for_each(algo.getPopulation().at(i).getCityList().begin(), algo.getPopulation().at(i).getCityList().end(), print);
+        cout << algo.getPopulation().at(i);
+        cout << endl;
     }
     algo.sort_population();
+    cout << algo.getPopulation().at(0);
 
     return 0;
 }

@@ -12,6 +12,12 @@ class tour {
 private:
     vector<city> city_list;
     double total_mileage;
+    friend bool operator< (const tour& lhs, const tour& rhs);
+    friend bool operator> (const tour& lhs, const tour& rhs);
+    friend bool operator<=(const tour& lhs, const tour& rhs);
+    friend bool operator>=(const tour& lhs, const tour& rhs);
+    friend std::ostream& operator<<(std::ostream& os, const tour& obj);
+
 public:
     tour(const vector<city> &cityList);
 

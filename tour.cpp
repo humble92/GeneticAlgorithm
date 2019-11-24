@@ -25,6 +25,38 @@ double tour::get_total_mileage() {
     return total_mileage;
 }
 
+// () operator overloading, the same as getCityList()
+vector<city> tour::operator()() {
+    return city_list;
+}
+
+//return city list vector
+const vector<city> &tour::getCityList() const {
+    return city_list;
+}
+
+//overloading operator<
+bool operator< (const tour& lhs, const tour& rhs)
+{ return lhs.total_mileage < rhs.total_mileage; }
+
+//overloading operator>
+bool operator> (const tour& lhs, const tour& rhs)
+{return operator< (rhs,lhs);}
+
+//overloading operator<=
+bool operator<=(const tour& lhs, const tour& rhs)
+{return !operator> (lhs,rhs);}
+
+//overloading operator>=
+bool operator>=(const tour& lhs, const tour& rhs)
+{return !operator< (lhs,rhs);}
+
+std::ostream& operator<<(std::ostream& os, const tour& obj)
+{
+    os << obj.total_mileage;
+    return os;
+}
+
 // return distance between two cities
 double tour::get_distance(city & city1, city & city2) {
     return sqrt( pow((city1.getX()-city2.getX()), 2) + pow((city1.getY()-city2.getY()), 2));
@@ -35,15 +67,6 @@ void tour::push_back(city c) {
     city_list.push_back(c);
 }
 
-// () operator overloading, the same as getCityList()
-vector<city> tour::operator()() {
-    return city_list;
-}
-
-//return city list vector
-const vector<city> &tour::getCityList() const {
-    return city_list;
-}
 
 // set city list vector
 void tour::setCityList(const vector<city> &cityList) {
