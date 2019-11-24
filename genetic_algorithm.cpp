@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <functional>
 #include <cmath>
+
 #include "genetic_algorithm.hpp"
 
 using namespace std;
@@ -31,6 +32,9 @@ double genetic_algorithm::get_distance(city city1, city city2) {
     return sqrt( pow((city1.getX()-city2.getX()), 2) + pow((city1.getY()-city2.getY()), 2));
 }
 
+// random number generator between 0 ~ n -1
+int genetic_algorithm::random_num(int i) { return rand()%i;}
+
 // random city name generator
 string genetic_algorithm::random_name(int n)
 {
@@ -50,8 +54,19 @@ const vector<city> &genetic_algorithm::getMasterList() const {
 }
 
 //make population
-void genetic_algorithm::get_population() {
+void genetic_algorithm::make_population(int i) {
+    for (int j = 0; j < i; ++j) {
+        random_shuffle(master_list.begin(), master_list.end());
+        population.push_back(master_list);
+    }
+}
 
+const vector<vector<city>> &genetic_algorithm::getPopulation() const {
+    return population;
+}
+
+void genetic_algorithm::setPopulation(const vector<vector<city>> &population) {
+    genetic_algorithm::population = population;
 }
 
 #include "genetic_algorithm.hpp"

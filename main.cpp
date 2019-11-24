@@ -24,6 +24,13 @@ int main() {
     genetic_algorithm algo(cfg.CITIES_IN_TOUR);
     for_each(algo.getMasterList().begin(), algo.getMasterList().end(), print);
 
+    //make population, test 2 population printing
+    algo.make_population(cfg.POPULATION_SIZE);
+    for (int i = 0; i < 2; ++i) {
+        cout << endl;
+        for_each(algo.getPopulation().at(i).begin(), algo.getPopulation().at(i).end(), print);
+    }
+
     return 0;
 }
 

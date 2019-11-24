@@ -24,10 +24,10 @@ const pair<double, double> & city::getCoordinates() const {
     return coordinates;
 }
 
-const double city::getX() const {
+double city::getX() const {
     return coordinates.first;
 }
 
-const double city::getY() const {
+double city::getY() const {
     return coordinates.second;
 }
