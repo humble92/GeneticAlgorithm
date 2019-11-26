@@ -9,6 +9,32 @@
 
 using namespace std;
 
+//test print for city
+void print_city(city candidate)
+{
+    std::cout << candidate << " " << endl;
+}
+
+//test print for tour
+void print_tour(tour t)
+{
+    cout << endl << t << endl;
+    for(auto j = t.getCityList().begin(); j != t.getCityList().end(); ++j) {
+        print_city(*j);
+    }
+}
+
+//test print for population
+void print_population(vector<tour> v)
+{
+    for(auto i = v.begin(); i != v.end(); ++i) {
+        cout << endl << *i << endl;
+        for(auto j = i->getCityList().begin(); j != i->getCityList().end(); ++j) {
+            print_city(*j);
+        }
+    }
+}
+
 //constructor with number of city
 genetic_algorithm::genetic_algorithm(configure & cfg) : cfg{cfg} {
     double lower = 0.0;
@@ -26,8 +52,14 @@ genetic_algorithm::genetic_algorithm(configure & cfg) : cfg{cfg} {
     }
 }
 
-// random number generator between 0 ~ n -1
-int genetic_algorithm::random_num(int i) { return rand()%i;}
+// random number generator between 0 ~ n - 1
+int genetic_algorithm::random_num(int n) {
+    random_device dev;
+    mt19937 rng(dev());
+    uniform_int_distribution<std::mt19937::result_type> dist(0, n-1); // distribution in range [1, i]
+
+    return dist(rng);
+}
 
 // random city name generator
 string genetic_algorithm::random_name(int n)
@@ -82,7 +114,8 @@ void genetic_algorithm::build_new_population() {
     //build parents
     vector<vector<tour>> parents = build_parents();
     crossing_parents(parents);
-
+    mutate_gene();
+    population = next_population;
 }
 
 vector<vector<tour>> genetic_algorithm::build_parents() {
@@ -95,7 +128,7 @@ vector<vector<tour>> genetic_algorithm::build_parents() {
         vector<tour> parent;
         for (int k = 0; k < nParentPool; ++k) {
             l = random_num(cfg.POPULATION_SIZE - cfg.NUMBER_OF_ELITES);
-            if(k < cfg.NUMBER_OF_ELITES) {
+            if(l < cfg.NUMBER_OF_ELITES) {
                 k--;
                 continue;
             }
@@ -107,6 +140,8 @@ vector<vector<tour>> genetic_algorithm::build_parents() {
         parents.push_back(parent);
     }
 
+    //test printing
+    //for_each(parents.begin(), parents.end(), print_population);
     return parents;
 }
 
@@ -143,7 +178,14 @@ void genetic_algorithm::crossing_parents(vector<vector<tour>> & parents) {
                 t.push_back(p2.getCityList().at(k));
             }
         }
+        next_population.push_back(t);
     }
+
+    //test printing
+    //for_each(next_population.begin(), next_population.end(), print_tour);
+}
+
+void genetic_algorithm::mutate_gene() {
 
 }
 

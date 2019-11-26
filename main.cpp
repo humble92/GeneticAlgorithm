@@ -13,7 +13,6 @@ void print(city candidate)
     std::cout << candidate << " " << endl;
 }
 
-
 int main() {
     //get test information
     configure cfg;
@@ -24,7 +23,7 @@ int main() {
     genetic_algorithm algo(cfg);
 
     //Test random city generation
-    cout << "Test: random city generation" << endl << endl;
+    cout << endl << "Test: random city generation" << endl << endl;
     for_each(algo.getMasterList().begin(), algo.getMasterList().end(), print);
 
     //make population, test 2 population printing
@@ -38,8 +37,16 @@ int main() {
     //Test: fitness sort
     cout << endl << "Test: fitness sort (print the shortest value)" << endl << endl;
     algo.sort_population();
-    cout << algo.getPopulation().at(0);
+    cout << endl << algo.getPopulation().at(0) << endl;
 
+    //Test: print elite
+    cout << endl << "Test: print elite" << endl << endl;
+    algo.build_new_population();
+    cout << endl << algo.getPopulation().at(0) << endl;
+    for_each(algo.getPopulation().at(0).getCityList().begin(), algo.getPopulation().at(0).getCityList().end(), print);
+
+    //Test: build new population
+    cout << endl << "Test: build new population" << endl << endl;
 
     return 0;
 }

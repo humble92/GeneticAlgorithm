@@ -34,6 +34,8 @@ public:
 
     vector<vector<tour>> build_parents();
     void crossing_parents(vector<vector<tour>> &parents);
+
+    void mutate_gene();
 };
 
 

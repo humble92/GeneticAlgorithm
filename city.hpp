@@ -18,8 +18,10 @@ private:
     string name;
     pair<double, double> coordinates;
     friend ostream& operator<<(ostream& out, const city& s);
+    friend bool operator==(const city& lhs, const city& rhs);
 
 public:
+    city() = default;
     city(string name, pair<double, double> coordinates) : number{++counter}, name{name}, coordinates{ coordinates } { }
     city(string name, double x, double y) : number{++counter}, name{name}, coordinates{ make_pair(x, y) } { }
     int getNumber() const;

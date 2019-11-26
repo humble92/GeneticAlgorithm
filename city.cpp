@@ -12,6 +12,8 @@ ostream& operator<<(ostream& out, const city& s) {
     return out;
 }
 
+bool operator==(const city& lhs, const city& rhs) { return lhs.getName() == rhs.getName(); }
+
 int city::getNumber() const {
     return number;
 }
