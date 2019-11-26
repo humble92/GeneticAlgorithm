@@ -50,3 +50,29 @@ void readConfig(string & basicString, configure  & cfg) {
     infile.close();
 
 }
+
+//test print for city
+void print_city(city candidate)
+{
+    std::cout << candidate << " " << endl;
+}
+
+//test print for tour
+void print_tour(tour t)
+{
+    cout << endl << t << endl;
+    for(auto j = t.getCityList().begin(); j != t.getCityList().end(); ++j) {
+        print_city(*j);
+    }
+}
+
+//test print for population
+void print_population(vector<tour> v)
+{
+    for(auto i = v.begin(); i != v.end(); ++i) {
+        cout << endl << *i << endl;
+        for(auto j = i->getCityList().begin(); j != i->getCityList().end(); ++j) {
+            print_city(*j);
+        }
+    }
+}

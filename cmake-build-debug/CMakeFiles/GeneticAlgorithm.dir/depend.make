@@ -21,6 +21,7 @@ CMakeFiles/GeneticAlgorithm.dir/tour.cpp.o: ../tour.cpp
 CMakeFiles/GeneticAlgorithm.dir/tour.cpp.o: ../tour.hpp
 
 CMakeFiles/GeneticAlgorithm.dir/utils.cpp.o: ../city.hpp
+CMakeFiles/GeneticAlgorithm.dir/utils.cpp.o: ../tour.hpp
 CMakeFiles/GeneticAlgorithm.dir/utils.cpp.o: ../utils.cpp
 CMakeFiles/GeneticAlgorithm.dir/utils.cpp.o: ../utils.hpp
 

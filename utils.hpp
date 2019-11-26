@@ -6,6 +6,7 @@
 #define GENETICALGORITHM_UTILS_HPP
 
 #include "city.hpp"
+#include "tour.hpp"
 
 //environment parameters from a config file
 struct configure {
@@ -25,5 +26,8 @@ struct configure {
 //util methods
 void readConfig(string & basicString, configure & cfg);
 
+void print_city(city candidate);
+void print_tour(tour t);
+void print_population(vector<tour> v);
 
 #endif //GENETICALGORITHM_UTILS_HPP

@@ -9,32 +9,6 @@
 
 using namespace std;
 
-//test print for city
-void print_city(city candidate)
-{
-    std::cout << candidate << " " << endl;
-}
-
-//test print for tour
-void print_tour(tour t)
-{
-    cout << endl << t << endl;
-    for(auto j = t.getCityList().begin(); j != t.getCityList().end(); ++j) {
-        print_city(*j);
-    }
-}
-
-//test print for population
-void print_population(vector<tour> v)
-{
-    for(auto i = v.begin(); i != v.end(); ++i) {
-        cout << endl << *i << endl;
-        for(auto j = i->getCityList().begin(); j != i->getCityList().end(); ++j) {
-            print_city(*j);
-        }
-    }
-}
-
 //constructor with number of city
 genetic_algorithm::genetic_algorithm(configure & cfg) : cfg{cfg} {
     double lower = 0.0;
@@ -139,7 +113,6 @@ vector<vector<tour>> genetic_algorithm::build_parents() {
         sort(parent.begin(), parent.end());
         parents.push_back(parent);
     }
-
     //test printing
     //for_each(parents.begin(), parents.end(), print_population);
     return parents;
@@ -180,7 +153,6 @@ void genetic_algorithm::crossing_parents(vector<vector<tour>> & parents) {
         }
         next_population.push_back(t);
     }
-
     //test printing
     //for_each(next_population.begin(), next_population.end(), print_tour);
 }
