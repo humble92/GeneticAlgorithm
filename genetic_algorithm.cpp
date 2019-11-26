@@ -158,7 +158,19 @@ void genetic_algorithm::crossing_parents(vector<vector<tour>> & parents) {
 }
 
 void genetic_algorithm::mutate_gene() {
+    //exclude elite from mutation
+    for(auto i = next_population.begin() + cfg.NUMBER_OF_ELITES; i != next_population.end(); ++i) {
+        for_each(i.begin(), next_population.end(), swap_gene);
+    }
+}
 
+//swap city with adjacent one
+void genetic_algorithm::swap_gene(tour t)
+{
+    cout << endl << t << endl;
+    for(auto j = t.getCityList().begin(); j != t.getCityList().end(); ++j) {
+        print_city(*j);
+    }
 }
 
 #include "genetic_algorithm.hpp"
