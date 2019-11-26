@@ -8,26 +8,32 @@
 #include <vector>
 
 #include "tour.hpp"
+#include "utils.hpp"
 
 class genetic_algorithm {
 private:
     vector<city> master_list;
     vector<tour> population;
+    vector<tour> next_population;
+    configure cfg;
     int random_num(int i);
     string random_name(int n);
     bool evaluate_fitness(tour & tour1, tour & tour2);
 
 public:
     genetic_algorithm() = default;
-    genetic_algorithm(int numOfCity);
+    genetic_algorithm(configure & cfg);
 
     const vector<city> &getMasterList() const;
     const vector<tour> &getPopulation() const;
     void setPopulation(const vector<tour> &population);
 
-    void make_population(int i);
+    void init_population(int i);
     void sort_population();
+    void build_new_population();
 
+    vector<vector<tour>> build_parents();
+    void crossing_parents(vector<vector<tour>> &parents);
 };
 
 

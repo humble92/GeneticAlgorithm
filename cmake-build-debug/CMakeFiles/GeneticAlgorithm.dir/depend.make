@@ -8,6 +8,7 @@ CMakeFiles/GeneticAlgorithm.dir/genetic_algorithm.cpp.o: ../city.hpp
 CMakeFiles/GeneticAlgorithm.dir/genetic_algorithm.cpp.o: ../genetic_algorithm.cpp
 CMakeFiles/GeneticAlgorithm.dir/genetic_algorithm.cpp.o: ../genetic_algorithm.hpp
 CMakeFiles/GeneticAlgorithm.dir/genetic_algorithm.cpp.o: ../tour.hpp
+CMakeFiles/GeneticAlgorithm.dir/genetic_algorithm.cpp.o: ../utils.hpp
 
 CMakeFiles/GeneticAlgorithm.dir/main.cpp.o: ../city.hpp
 CMakeFiles/GeneticAlgorithm.dir/main.cpp.o: ../genetic_algorithm.hpp
