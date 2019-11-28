@@ -36,7 +36,7 @@ public:
     void crossing_parents(vector<vector<tour>> &parents);
 
     void mutate_gene();
-    void swap_gene(tour t);
+    void swap_gene(tour& t);
 };
 
 

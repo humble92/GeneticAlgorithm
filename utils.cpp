@@ -20,6 +20,7 @@ void configure::setValue(int idx, int val) {
         case 6: this->MUTATION_RATE = val; break;
         case 7: this->NUMBER_OF_PARENTS = val; break;
         case 8: this->NUMBER_OF_ELITES = val; break;
+        case 9: this->MUTATION_TOURS_RATIO = val; break;
     }
 }
 

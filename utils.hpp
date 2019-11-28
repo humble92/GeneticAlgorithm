@@ -19,6 +19,7 @@ struct configure {
     int MUTATION_RATE;
     int NUMBER_OF_PARENTS;
     int NUMBER_OF_ELITES;
+    int MUTATION_TOURS_RATIO;
 
     void setValue(int idx, int val);
 };

@@ -119,8 +119,8 @@ vector<vector<tour>> genetic_algorithm::build_parents() {
 }
 
 void genetic_algorithm::crossing_parents(vector<vector<tour>> & parents) {
-    int nParentPool = cfg.PARENT_POOL_SIZE;
     int nParents = cfg.NUMBER_OF_PARENTS;
+    unsigned nCitiesInTour = cfg.CITIES_IN_TOUR;
     vector<tour> children_genes;
     for (int k = 0; k < nParents; ++k) {
         vector<tour> parent = parents.at(k);
@@ -134,7 +134,7 @@ void genetic_algorithm::crossing_parents(vector<vector<tour>> & parents) {
         //crossing fittest parent genes
 
         //Pick a random index and copy all cities up to and including that index from parent 1
-        l = random_num(cfg.CITIES_IN_TOUR);
+        l = random_num(nCitiesInTour);
         tour t;
         tour p1 = children_genes.at(0);
         int j;
@@ -144,8 +144,8 @@ void genetic_algorithm::crossing_parents(vector<vector<tour>> & parents) {
 
         //After hitting index 1 of parent 1, start from beginning of parent 2
         tour p2 = children_genes.at(1);
-        vector<city> rest_cities(cfg.CITIES_IN_TOUR - t.getCityList().size());
-        for (int k = 0; t.getCityList().size() < cfg.CITIES_IN_TOUR; ++k) {
+        vector<city> rest_cities(nCitiesInTour - t.getCityList().size());
+        for (int k = 0; t.getCityList().size() < nCitiesInTour; ++k) {
             if(find(t.getCityList().begin(), t.getCityList().end(), p2.getCityList().at(k)) == t.getCityList().end())
             {
                 t.push_back(p2.getCityList().at(k));
@@ -159,18 +159,41 @@ void genetic_algorithm::crossing_parents(vector<vector<tour>> & parents) {
 
 void genetic_algorithm::mutate_gene() {
     //exclude elite from mutation
-    for(auto i = next_population.begin() + cfg.NUMBER_OF_ELITES; i != next_population.end(); ++i) {
-        for_each(i.begin(), next_population.end(), swap_gene);
+    int nMutation = cfg.POPULATION_SIZE * ( (double) cfg.MUTATION_TOURS_RATIO / 100.0);
+    int randomNo;
+    for (int j = 0; j < nMutation; ++j) {
+        randomNo = random_num(cfg.POPULATION_SIZE);
+        if(randomNo < cfg.NUMBER_OF_ELITES) {
+            j--;
+            continue;
+        }
+        cout << "[start] swap target: " << endl;
+        print_tour(next_population.at(j));
+        swap_gene(next_population.at(j));
+        cout << "-----------------------" << endl;
+        print_tour(next_population.at(j));
+        cout << "[end] swap done " << endl;
     }
 }
 
 //swap city with adjacent one
-void genetic_algorithm::swap_gene(tour t)
+void genetic_algorithm::swap_gene(tour& t)
 {
-    cout << endl << t << endl;
-    for(auto j = t.getCityList().begin(); j != t.getCityList().end(); ++j) {
-        print_city(*j);
+    int randomNo;
+    vector<city> city_list = t.getCityList();
+    for(auto j = city_list.begin(); j != city_list.end(); ++j) {
+        randomNo = random_num(100 + 1); //max 100%
+        if(randomNo <= cfg.MUTATION_RATE) {
+            if(randomNo%2 == 0 && j < city_list.end() - 2) {
+                swap(*j, *(j+1));
+            } else {
+                swap(*j, *(j-1));
+            }
+        }
     }
+
+    //because getCityList() returns constant
+    t.setCityList(city_list);
 }
 
 #include "genetic_algorithm.hpp"
