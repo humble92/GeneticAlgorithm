@@ -24,7 +24,7 @@ int main() {
     genetic_algorithm algo(cfg);
     algo.init();
     int iteration = 0;
-    while(iteration < cfg.ITERATIONS) {
+    while(iteration++ < cfg.ITERATIONS) {
         algo.run();
     }
 

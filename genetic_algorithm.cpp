@@ -47,7 +47,7 @@ void genetic_algorithm::run() {
 
 void genetic_algorithm::make_report() {
     best_tour = population.at(0);
-    report r = report{iteration_no, best_tour, 0, 0};
+    report r = report{iteration_no++, best_tour, 0, 0};
     reports.push_back(r);
 }
 
@@ -96,7 +96,9 @@ void genetic_algorithm::build_new_population() {
     vector<vector<tour>> parents = build_parents();
     crossing_parents(parents);
     mutate_gene();
-    population = next_population;
+
+    population.swap(next_population);
+    next_population.clear();
 }
 
 vector<vector<tour>> genetic_algorithm::build_parents() {
@@ -191,7 +193,11 @@ void genetic_algorithm::swap_gene(tour& t)
     for(auto j = city_list.begin(); j != city_list.end(); ++j) {
         randomNo = random_num(100 + 1); //max 100%
         if(randomNo <= cfg.MUTATION_RATE) {
-            if(randomNo%2 == 0 && j < city_list.end() - 2) {
+            if(j == city_list.begin()) {
+                swap(*j, *(j+1));
+            } else if(j == city_list.end() - 1) {
+                swap(*j, *(j-1));
+            } else if(randomNo%2 == 0) {
                 swap(*j, *(j+1));
             } else {
                 swap(*j, *(j-1));

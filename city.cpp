@@ -14,6 +14,18 @@ ostream& operator<<(ostream& out, const city& s) {
 
 bool operator==(const city& lhs, const city& rhs) { return lhs.getName() == rhs.getName(); }
 
+city& city::operator=(city other ) {
+    mySwap(*this, other);
+    return *this;
+}
+
+void city::mySwap(city &c1, city &c2) {
+    using std::swap;
+    swap(c1.number, c2.number);
+    swap(c1.name, c2.name);
+    swap(c1.coordinates, c2.coordinates);
+}
+
 int city::getNumber() const {
     return number;
 }
