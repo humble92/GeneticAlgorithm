@@ -167,12 +167,12 @@ void genetic_algorithm::mutate_gene() {
             j--;
             continue;
         }
-        cout << "[start] swap target: " << endl;
-        print_tour(next_population.at(j));
+//        cout << "[start] swap target: " << endl;
+//        print_tour(next_population.at(j));
         swap_gene(next_population.at(j));
-        cout << "-----------------------" << endl;
-        print_tour(next_population.at(j));
-        cout << "[end] swap done " << endl;
+//        cout << "-----------------------" << endl;
+//        print_tour(next_population.at(j));
+//        cout << "[end] swap done " << endl;
     }
 }
 
@@ -194,6 +194,19 @@ void genetic_algorithm::swap_gene(tour& t)
 
     //because getCityList() returns constant
     t.setCityList(city_list);
+}
+
+void genetic_algorithm::run() {
+    //fitness sort
+    sort_population();
+
+    //generate new population
+    build_new_population();
+}
+
+void genetic_algorithm::init() {
+    //make population
+    init_population(cfg.POPULATION_SIZE);
 }
 
 #include "genetic_algorithm.hpp"

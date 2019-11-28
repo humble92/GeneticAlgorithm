@@ -37,6 +37,10 @@ public:
 
     void mutate_gene();
     void swap_gene(tour& t);
+
+    void run();
+
+    void init();
 };
 
 

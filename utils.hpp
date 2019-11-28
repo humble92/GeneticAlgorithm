@@ -5,6 +5,7 @@
 #ifndef GENETICALGORITHM_UTILS_HPP
 #define GENETICALGORITHM_UTILS_HPP
 
+#include <ostream>
 #include "city.hpp"
 #include "tour.hpp"
 
@@ -22,10 +23,11 @@ struct configure {
     int MUTATION_TOURS_RATIO;
 
     void setValue(int idx, int val);
+    friend ostream &operator<<(ostream &os, const configure &configure);
 };
 
 //util methods
-void readConfig(string & basicString, configure & cfg);
+void readConfig(string & filename, configure & cfg);
 
 void print_city(city candidate);
 void print_tour(tour t);

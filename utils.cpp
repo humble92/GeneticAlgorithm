@@ -24,17 +24,33 @@ void configure::setValue(int idx, int val) {
     }
 }
 
+ostream &operator<<(ostream &os, const configure &configure) {
+    os << "---------------------------------" << endl
+       << " CITIES_IN_TOUR: " << configure.CITIES_IN_TOUR << endl
+       << " POPULATION_SIZE: " << configure.POPULATION_SIZE << endl
+       << " SHUFFLES: " << configure.SHUFFLES  << endl
+       << " ITERATIONS: " << configure.ITERATIONS  << endl
+       << " MAP_BOUNDARY: " << configure.MAP_BOUNDARY  << endl
+       << " PARENT_POOL_SIZE: " << configure.PARENT_POOL_SIZE  << endl
+       << " MUTATION_RATE: " << configure.MUTATION_RATE  << endl
+       << " NUMBER_OF_PARENTS: " << configure.NUMBER_OF_PARENTS  << endl
+       << " NUMBER_OF_ELITES: " << configure.NUMBER_OF_ELITES  << endl
+       << " MUTATION_TOURS_RATIO: " << configure.MUTATION_TOURS_RATIO << endl
+       << "---------------------------------";
+    return os;
+}
+
 /*
  * read configure file to set running environment
- * @param string basicString - file path and name
+ * @param string filename - file path and name
  * @param configure cfg - env. parameters structure
  */
-void readConfig(string & basicString, configure  & cfg) {
+void readConfig(string & filename, configure  & cfg) {
     string input;
     string token[2];
     int line = 0, i = 0;
     ifstream infile;
-    infile.open (basicString);
+    infile.open (filename);
 
     while(!infile.eof()) // To get you all the lines.
     {
