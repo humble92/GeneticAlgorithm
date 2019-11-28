@@ -12,10 +12,13 @@
 
 class genetic_algorithm {
 private:
+    configure cfg;
     vector<city> master_list;
+    tour base_tour;
+    tour best_tour;
+    vector<report> reports;
     vector<tour> population;
     vector<tour> next_population;
-    configure cfg;
     int random_num(int i);
     string random_name(int n);
     bool evaluate_fitness(tour & tour1, tour & tour2);
@@ -23,6 +26,11 @@ private:
 public:
     genetic_algorithm() = default;
     genetic_algorithm(configure & cfg);
+
+    void init();
+    void run();
+    void make_report();
+    void print_result();
 
     const vector<city> &getMasterList() const;
     const vector<tour> &getPopulation() const;
@@ -38,9 +46,6 @@ public:
     void mutate_gene();
     void swap_gene(tour& t);
 
-    void run();
-
-    void init();
 };
 
 

@@ -21,12 +21,14 @@ int main() {
     //For test each step
     //test_steps(cfg);
 
-    int iteration = 0;
     genetic_algorithm algo(cfg);
     algo.init();
+    int iteration = 0;
     while(iteration < cfg.ITERATIONS) {
         algo.run();
     }
+
+    algo.print_result();
 
     return 0;
 }

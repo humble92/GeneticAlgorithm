@@ -21,6 +21,7 @@ void configure::setValue(int idx, int val) {
         case 7: this->NUMBER_OF_PARENTS = val; break;
         case 8: this->NUMBER_OF_ELITES = val; break;
         case 9: this->MUTATION_TOURS_RATIO = val; break;
+        case 10: this->IMPROVEMENT_FACTOR = val; break;
     }
 }
 
@@ -36,6 +37,7 @@ ostream &operator<<(ostream &os, const configure &configure) {
        << " NUMBER_OF_PARENTS: " << configure.NUMBER_OF_PARENTS  << endl
        << " NUMBER_OF_ELITES: " << configure.NUMBER_OF_ELITES  << endl
        << " MUTATION_TOURS_RATIO: " << configure.MUTATION_TOURS_RATIO << endl
+       << " IMPROVEMENT_FACTOR: " << configure.IMPROVEMENT_FACTOR << endl
        << "---------------------------------";
     return os;
 }
@@ -83,6 +85,16 @@ void print_tour(tour t)
     }
 }
 
+
+//test print for tour
+void print_report(report r)
+{
+    cout << endl << r.elite_tour << endl;
+    for(auto j = r.elite_tour.getCityList().begin(); j != r.elite_tour.getCityList().end(); ++j) {
+        print_city(*j);
+    }
+}
+
 //test print for population
 void print_population(vector<tour> v)
 {
@@ -93,3 +105,9 @@ void print_population(vector<tour> v)
         }
     }
 }
+
+report::report(int iteration, const tour &eliteTour, bool isImproved, double improvement) :
+        iteration(iteration),
+        elite_tour(eliteTour),
+        is_improved(isImproved),
+        improvement(improvement) {}

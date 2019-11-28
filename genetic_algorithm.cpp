@@ -8,6 +8,7 @@
 #include "genetic_algorithm.hpp"
 
 using namespace std;
+static int iteration_no = 1;
 
 //constructor with number of city
 genetic_algorithm::genetic_algorithm(configure & cfg) : cfg{cfg} {
@@ -24,28 +25,34 @@ genetic_algorithm::genetic_algorithm(configure & cfg) : cfg{cfg} {
         city new_city(random_name(i), coordinate_generator(), coordinate_generator());
         master_list.push_back(new_city);
     }
+
+    base_tour = tour{master_list};
 }
 
-// random number generator between 0 ~ n - 1
-int genetic_algorithm::random_num(int n) {
-    random_device dev;
-    mt19937 rng(dev());
-    uniform_int_distribution<std::mt19937::result_type> dist(0, n-1); // distribution in range [1, i]
-
-    return dist(rng);
+void genetic_algorithm::init() {
+    //make population
+    init_population(cfg.POPULATION_SIZE);
 }
 
-// random city name generator
-string genetic_algorithm::random_name(int n)
-{
-    string str("abcdefghijklmnopqrstuvwxyz");
-    random_device rd;
-    mt19937 generator(rd());
-    shuffle(str.begin(), str.end(), generator);
-    str[0] = toupper(str[0]); //Capitalize the first character
-    int length = n % 5 + 5;
+void genetic_algorithm::run() {
+    //fitness sort
+    sort_population();
 
-    return str.substr(0, length);    // total length of name
+    //make a report
+    make_report();
+
+    //generate new population
+    build_new_population();
+}
+
+void genetic_algorithm::make_report() {
+    best_tour = population.at(0);
+    report r = report{iteration_no, best_tour, 0, 0};
+    reports.push_back(r);
+}
+
+void genetic_algorithm::print_result() {
+    for_each(reports.begin(), reports.end(), print_report);
 }
 
 //getter of master_list
@@ -196,17 +203,26 @@ void genetic_algorithm::swap_gene(tour& t)
     t.setCityList(city_list);
 }
 
-void genetic_algorithm::run() {
-    //fitness sort
-    sort_population();
+// random number generator between 0 ~ n - 1
+int genetic_algorithm::random_num(int n) {
+    random_device dev;
+    mt19937 rng(dev());
+    uniform_int_distribution<std::mt19937::result_type> dist(0, n-1); // distribution in range [1, i]
 
-    //generate new population
-    build_new_population();
+    return dist(rng);
 }
 
-void genetic_algorithm::init() {
-    //make population
-    init_population(cfg.POPULATION_SIZE);
+// random city name generator
+string genetic_algorithm::random_name(int n)
+{
+    string str("abcdefghijklmnopqrstuvwxyz");
+    random_device rd;
+    mt19937 generator(rd());
+    shuffle(str.begin(), str.end(), generator);
+    str[0] = toupper(str[0]); //Capitalize the first character
+    int length = n % 5 + 5;
+
+    return str.substr(0, length);    // total length of name
 }
 
 #include "genetic_algorithm.hpp"
