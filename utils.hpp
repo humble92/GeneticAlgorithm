@@ -32,8 +32,13 @@ struct report {
     tour elite_tour;
     bool is_improved;
     double improvement;
+    bool step_improved;
+    double step_improvement;
 
     report(int iteration, const tour &eliteTour, bool isImproved, double improvement);
+
+    report(int iteration, const tour &eliteTour, bool isImproved, double improvement, bool stepImproved,
+           double stepImprovement);
 };
 
 //util methods

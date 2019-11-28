@@ -73,26 +73,27 @@ void readConfig(string & filename, configure  & cfg) {
 //test print for city
 void print_city(city candidate)
 {
-    std::cout << candidate << " " << endl;
+    std::cout << "    " << candidate << " " << endl;
 }
 
 //test print for tour
 void print_tour(tour t)
 {
-    cout << endl << t << endl;
     for(auto j = t.getCityList().begin(); j != t.getCityList().end(); ++j) {
         print_city(*j);
     }
 }
 
-
-//test print for tour
+//print each iteration report
 void print_report(report r)
 {
-    cout << endl << r.elite_tour << endl;
-    for(auto j = r.elite_tour.getCityList().begin(); j != r.elite_tour.getCityList().end(); ++j) {
-        print_city(*j);
-    }
+    cout << "\n[Iteration " << r.iteration << "]\n";
+    cout << "Best distance (current): " << r.elite_tour << endl;
+    cout << "Was this iteration improved: " << boolalpha << r.step_improved << " (" << r.step_improvement << " %)"<< endl;
+    cout << "Improvement over base achieved: " << boolalpha << r.is_improved << " (" << r.improvement << " %)"<< endl;
+//    for(auto j = r.elite_tour.getCityList().begin(); j != r.elite_tour.getCityList().end(); ++j) {
+//        print_city(*j);
+//    }
 }
 
 //test print for population
@@ -111,3 +112,12 @@ report::report(int iteration, const tour &eliteTour, bool isImproved, double imp
         elite_tour(eliteTour),
         is_improved(isImproved),
         improvement(improvement) {}
+
+report::report(int iteration, const tour &eliteTour, bool isImproved, double improvement,
+        bool stepImproved, double stepImprovement) :
+        iteration(iteration),
+        elite_tour(eliteTour),
+        is_improved(isImproved),
+        improvement(improvement),
+        step_improved(stepImproved),
+        step_improvement(stepImprovement) {}

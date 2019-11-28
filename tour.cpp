@@ -12,7 +12,7 @@ tour::tour(const vector<city> &cityList) : city_list(cityList) {
 
 // calculate and set total mileage
 void tour::set_total_mileage() {
-    double total_distance = 0;
+    double total_distance = 0.0;
     vector<city>::size_type i;
     for (i = 0; i < city_list.size() - 1; ++i) {
         total_distance += get_distance(city_list.at(i), city_list.at(i+1));

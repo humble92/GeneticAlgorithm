@@ -8,12 +8,12 @@
 #include "genetic_algorithm.hpp"
 
 using namespace std;
-static int iteration_no = 1;
+int genetic_algorithm::iteration_no = 0;
 
 //constructor with number of city
 genetic_algorithm::genetic_algorithm(configure & cfg) : cfg{cfg} {
     double lower = 0.0;
-    double upper = 1000.0;
+    double upper = cfg.MAP_BOUNDARY;
 
     //random number generator
     default_random_engine generator(time(0));
@@ -26,7 +26,7 @@ genetic_algorithm::genetic_algorithm(configure & cfg) : cfg{cfg} {
         master_list.push_back(new_city);
     }
 
-    base_tour = tour{master_list};
+    prev_tour = base_tour = tour{master_list};
 }
 
 void genetic_algorithm::init() {
@@ -47,12 +47,26 @@ void genetic_algorithm::run() {
 
 void genetic_algorithm::make_report() {
     best_tour = population.at(0);
-    report r = report{iteration_no++, best_tour, 0, 0};
+    double step_improvement = evaluate_improvement(prev_tour.get_total_mileage(), best_tour.get_total_mileage());
+    bool step_improved = step_improvement > 0;
+    double improvement = evaluate_improvement(base_tour.get_total_mileage(), best_tour.get_total_mileage());
+    bool is_improved = improvement >= cfg.IMPROVEMENT_FACTOR;
+    report r = report{++iteration_no, best_tour, is_improved, improvement, step_improved, step_improvement};
     reports.push_back(r);
 }
 
 void genetic_algorithm::print_result() {
     for_each(reports.begin(), reports.end(), print_report);
+    double improvement = evaluate_improvement(base_tour.get_total_mileage(), best_tour.get_total_mileage());
+    bool is_improved = improvement >= cfg.IMPROVEMENT_FACTOR;
+
+    cout << "\n[Final result]\n" << endl;
+    cout << "Iteration number: " << iteration_no << endl;
+    cout << "Was improvement factor achieved: " << boolalpha << is_improved << " (" << improvement << " %)"<< endl;
+    cout << "Base tour distance: " << base_tour << endl;
+    cout << "Best tour distance: " << best_tour << endl;
+    cout << "Base route: " << endl; print_tour(base_tour);
+    cout << "Best route: " << endl; print_tour(best_tour);
 }
 
 //getter of master_list
@@ -97,6 +111,7 @@ void genetic_algorithm::build_new_population() {
     crossing_parents(parents);
     mutate_gene();
 
+    prev_tour = population.at(0);
     population.swap(next_population);
     next_population.clear();
 }
@@ -229,6 +244,10 @@ string genetic_algorithm::random_name(int n)
     int length = n % 5 + 5;
 
     return str.substr(0, length);    // total length of name
+}
+
+double genetic_algorithm::evaluate_improvement(double mileage1, double mileage2) {
+    return (mileage1 - mileage2) * 100 / mileage1;
 }
 
 #include "genetic_algorithm.hpp"

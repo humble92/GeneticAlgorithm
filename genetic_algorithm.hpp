@@ -14,16 +14,18 @@ class genetic_algorithm {
 private:
     configure cfg;
     vector<city> master_list;
-    tour base_tour;
-    tour best_tour;
     vector<report> reports;
     vector<tour> population;
     vector<tour> next_population;
+    tour base_tour;
+    tour prev_tour;
+    tour best_tour;
     int random_num(int i);
     string random_name(int n);
     bool evaluate_fitness(tour & tour1, tour & tour2);
 
 public:
+    static int iteration_no;
     genetic_algorithm() = default;
     genetic_algorithm(configure & cfg);
 
@@ -46,6 +48,7 @@ public:
     void mutate_gene();
     void swap_gene(tour& t);
 
+    double evaluate_improvement(double mileage1, double mileage2);
 };
 
 
