@@ -12,6 +12,8 @@
 
 class genetic_algorithm {
 private:
+    //iteration number
+    int iteration_no;
     //environment object
     configure cfg;
     //master list
@@ -43,8 +45,6 @@ private:
     bool is_improved;
 
 public:
-    //iteration number
-    static int iteration_no;
     genetic_algorithm() = default;
     genetic_algorithm(configure & cfg);
 
@@ -58,6 +58,8 @@ public:
     const vector<city> &getMasterList() const;
     const vector<tour> &getPopulation() const;
     void setPopulation(const vector<tour> &population);
+
+    int getIterationNo() const;
 
     //if the improvement factor is achieved
     bool isImproved() const;

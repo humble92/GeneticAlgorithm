@@ -8,15 +8,15 @@
 #include "genetic_algorithm.hpp"
 
 using namespace std;
-int genetic_algorithm::iteration_no = 0;
 
 //constructor with number of city
 genetic_algorithm::genetic_algorithm(configure & cfg) : cfg{cfg} {
     double lower = 0.0;
+    iteration_no = 0;
     double upper = cfg.MAP_BOUNDARY;
 
     //random number generator
-    default_random_engine generator(time(0));
+    default_random_engine generator(time(nullptr));
     uniform_real_distribution<double> distribution(lower, upper);
     auto coordinate_generator = bind(distribution, generator);
 
@@ -266,6 +266,11 @@ double genetic_algorithm::evaluate_improvement(double mileage1, double mileage2)
 //decide if the improvement factor is achieved
 bool genetic_algorithm::isImproved() const {
     return is_improved;
+}
+
+//getter of iteration count
+int genetic_algorithm::getIterationNo() const {
+    return iteration_no;
 }
 
 #include "genetic_algorithm.hpp"

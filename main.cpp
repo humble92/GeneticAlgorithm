@@ -27,7 +27,7 @@ int main() {
     //It runs until the improvement factor is achieved or iteration count is no more than maximum iteration value.
     genetic_algorithm algo(cfg);
     algo.init();
-    while(!algo.isImproved() && genetic_algorithm::iteration_no < cfg.ITERATIONS) {
+    while(!algo.isImproved() && algo.getIterationNo() < cfg.ITERATIONS) {
         algo.run();
     }
 
