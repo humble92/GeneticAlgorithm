@@ -23,6 +23,8 @@ private:
     int random_num(int i);
     string random_name(int n);
     bool evaluate_fitness(tour & tour1, tour & tour2);
+    double improvement;
+    bool is_improved;
 
 public:
     static int iteration_no;
@@ -37,6 +39,8 @@ public:
     const vector<city> &getMasterList() const;
     const vector<tour> &getPopulation() const;
     void setPopulation(const vector<tour> &population);
+
+    bool isImproved() const;
 
     void init_population(int i);
     void sort_population();

@@ -49,16 +49,16 @@ void genetic_algorithm::make_report() {
     best_tour = population.at(0);
     double step_improvement = evaluate_improvement(prev_tour.get_total_mileage(), best_tour.get_total_mileage());
     bool step_improved = step_improvement > 0;
-    double improvement = evaluate_improvement(base_tour.get_total_mileage(), best_tour.get_total_mileage());
-    bool is_improved = improvement >= cfg.IMPROVEMENT_FACTOR;
+    improvement = evaluate_improvement(base_tour.get_total_mileage(), best_tour.get_total_mileage());
+    is_improved = improvement >= cfg.IMPROVEMENT_FACTOR;
     report r = report{++iteration_no, best_tour, is_improved, improvement, step_improved, step_improvement};
     reports.push_back(r);
 }
 
 void genetic_algorithm::print_result() {
     for_each(reports.begin(), reports.end(), print_report);
-    double improvement = evaluate_improvement(base_tour.get_total_mileage(), best_tour.get_total_mileage());
-    bool is_improved = improvement >= cfg.IMPROVEMENT_FACTOR;
+//    double improvement = evaluate_improvement(base_tour.get_total_mileage(), best_tour.get_total_mileage());
+//    bool is_improved = improvement >= cfg.IMPROVEMENT_FACTOR;
 
     cout << "\n[Final result]\n" << endl;
     cout << "Iteration number: " << iteration_no << endl;
@@ -248,6 +248,10 @@ string genetic_algorithm::random_name(int n)
 
 double genetic_algorithm::evaluate_improvement(double mileage1, double mileage2) {
     return (mileage1 - mileage2) * 100 / mileage1;
+}
+
+bool genetic_algorithm::isImproved() const {
+    return is_improved;
 }
 
 #include "genetic_algorithm.hpp"

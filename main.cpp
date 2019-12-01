@@ -23,7 +23,7 @@ int main() {
 
     genetic_algorithm algo(cfg);
     algo.init();
-    while(genetic_algorithm::iteration_no < cfg.ITERATIONS) {
+    while(!algo.isImproved() && genetic_algorithm::iteration_no < cfg.ITERATIONS) {
         algo.run();
     }
 
