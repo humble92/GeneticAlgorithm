@@ -19,7 +19,7 @@ private:
     friend std::ostream& operator<<(std::ostream& os, const tour& obj);
 
 public:
-    tour() = default;
+    tour() : total_mileage{0.0} {}
     tour(const vector<city> &cityList);
 
     void push_back(city);

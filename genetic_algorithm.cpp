@@ -175,6 +175,7 @@ void genetic_algorithm::crossing_parents(vector<vector<tour>> & parents) {
                 t.push_back(p2.getCityList().at(k));
             }
         }
+        t.set_total_mileage();
         next_population.push_back(t);
     }
     //test printing
