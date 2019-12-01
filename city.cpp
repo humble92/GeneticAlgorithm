@@ -1,6 +1,7 @@
 //
 // Created by humbl on 11/13/2019.
 //
+// city class including city name and its coordinates
 
 #include "city.hpp"
 

@@ -20,7 +20,7 @@ genetic_algorithm::genetic_algorithm(configure & cfg) : cfg{cfg} {
     uniform_real_distribution<double> distribution(lower, upper);
     auto coordinate_generator = bind(distribution, generator);
 
-    //create cities with randomm coordinates and push to cities list
+    //create cities with random coordinates and push to cities list
     for(int i = 0; i < cfg.CITIES_IN_TOUR; i++) {
         city new_city(random_name(i), coordinate_generator(), coordinate_generator());
         master_list.push_back(new_city);
@@ -29,11 +29,13 @@ genetic_algorithm::genetic_algorithm(configure & cfg) : cfg{cfg} {
     prev_tour = base_tour = tour{master_list};
 }
 
+//initialize population
 void genetic_algorithm::init() {
     //make population
     init_population(cfg.POPULATION_SIZE);
 }
 
+//run genetic algorithm
 void genetic_algorithm::run() {
     //fitness sort
     sort_population();
@@ -45,6 +47,7 @@ void genetic_algorithm::run() {
     build_new_population();
 }
 
+//make each iteration report
 void genetic_algorithm::make_report() {
     best_tour = population.at(0);
     double step_improvement = evaluate_improvement(prev_tour.get_total_mileage(), best_tour.get_total_mileage());
@@ -55,10 +58,9 @@ void genetic_algorithm::make_report() {
     reports.push_back(r);
 }
 
+//print the whole result including every iteration
 void genetic_algorithm::print_result() {
     for_each(reports.begin(), reports.end(), print_report);
-//    double improvement = evaluate_improvement(base_tour.get_total_mileage(), best_tour.get_total_mileage());
-//    bool is_improved = improvement >= cfg.IMPROVEMENT_FACTOR;
 
     cout << "\n[Final result]\n" << endl;
     cout << "Iteration number: " << iteration_no << endl;
@@ -83,22 +85,27 @@ void genetic_algorithm::init_population(int i) {
     }
 }
 
+//getter of population
 const vector<tour> &genetic_algorithm::getPopulation() const {
     return population;
 }
 
+//setter of population
 void genetic_algorithm::setPopulation(const vector<tour> &population) {
     genetic_algorithm::population = population;
 }
 
+//sort population
 void genetic_algorithm::sort_population() {
     sort(population.begin(), population.end());
 }
 
+//to support evaluating fitness, it is replaced with overloaded operator, >
 bool genetic_algorithm::evaluate_fitness(tour & tour1, tour & tour2) {
     return (tour1.get_total_mileage() < tour2.get_total_mileage());
 }
 
+//build next population
 void genetic_algorithm::build_new_population() {
     //keep elite for next iteration
     int nElite = cfg.NUMBER_OF_ELITES;
@@ -116,6 +123,7 @@ void genetic_algorithm::build_new_population() {
     next_population.clear();
 }
 
+//build parents
 vector<vector<tour>> genetic_algorithm::build_parents() {
     int nParent = cfg.NUMBER_OF_PARENTS;
     int nParentPool = cfg.PARENT_POOL_SIZE;
@@ -126,6 +134,7 @@ vector<vector<tour>> genetic_algorithm::build_parents() {
         vector<tour> parent;
         for (int k = 0; k < nParentPool; ++k) {
             l = random_num(cfg.POPULATION_SIZE - cfg.NUMBER_OF_ELITES);
+            //to keep elite
             if(l < cfg.NUMBER_OF_ELITES) {
                 k--;
                 continue;
@@ -142,6 +151,7 @@ vector<vector<tour>> genetic_algorithm::build_parents() {
     return parents;
 }
 
+//crossing parents
 void genetic_algorithm::crossing_parents(vector<vector<tour>> & parents) {
     int nParents = cfg.NUMBER_OF_PARENTS;
     unsigned nCitiesInTour = cfg.CITIES_IN_TOUR;
@@ -182,6 +192,7 @@ void genetic_algorithm::crossing_parents(vector<vector<tour>> & parents) {
     //for_each(next_population.begin(), next_population.end(), print_tour);
 }
 
+//mutate genes
 void genetic_algorithm::mutate_gene() {
     //exclude elite from mutation
     int nMutation = cfg.POPULATION_SIZE * ( (double) cfg.MUTATION_TOURS_RATIO / 100.0);
@@ -247,10 +258,12 @@ string genetic_algorithm::random_name(int n)
     return str.substr(0, length);    // total length of name
 }
 
+//evaluate the amount of improvement (%)
 double genetic_algorithm::evaluate_improvement(double mileage1, double mileage2) {
     return (mileage1 - mileage2) * 100 / mileage1;
 }
 
+//decide if the improvement factor is achieved
 bool genetic_algorithm::isImproved() const {
     return is_improved;
 }

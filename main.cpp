@@ -18,15 +18,20 @@ int main() {
     cout << "\nThis test is run under the settings below: " << endl;
     cout << cfg << endl;
 
-    //For test each step
+    /////////// For test one iteration step by step (using print every step results) ///////
     //test_steps(cfg);
+    //return 0;
+    ////////////////////////////////////////////////////////////////////////////////////////
 
+    //Algorithm initializing and running
+    //It runs until the improvement factor is achieved or iteration count is no more than maximum iteration value.
     genetic_algorithm algo(cfg);
     algo.init();
     while(!algo.isImproved() && genetic_algorithm::iteration_no < cfg.ITERATIONS) {
         algo.run();
     }
 
+    //print the whole result
     algo.print_result();
 
     return 0;

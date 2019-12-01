@@ -1,6 +1,8 @@
 //
 // Created by humbl on 11/24/2019.
 //
+// tour class including all cities in a route and total distance
+
 #include <cmath>
 
 #include "tour.hpp"

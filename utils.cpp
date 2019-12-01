@@ -1,6 +1,8 @@
 //
 // Created by humbl on 11/13/2019.
 //
+//utility and helper c++ file
+
 #include <random>
 #include <fstream>
 #include <sstream>
@@ -25,6 +27,7 @@ void configure::setValue(int idx, int val) {
     }
 }
 
+//print environment variables
 ostream &operator<<(ostream &os, const configure &configure) {
     os << "---------------------------------" << endl
        << " CITIES_IN_TOUR: " << configure.CITIES_IN_TOUR << endl
@@ -107,12 +110,14 @@ void print_population(vector<tour> v)
     }
 }
 
+//final report constructor
 report::report(int iteration, const tour &eliteTour, bool isImproved, double improvement) :
         iteration(iteration),
         elite_tour(eliteTour),
         is_improved(isImproved),
         improvement(improvement) {}
 
+//report constructor for each iteration
 report::report(int iteration, const tour &eliteTour, bool isImproved, double improvement,
         bool stepImproved, double stepImprovement) :
         iteration(iteration),

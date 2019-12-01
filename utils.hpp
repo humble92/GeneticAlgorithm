@@ -1,6 +1,7 @@
 //
 // Created by humbl on 11/13/2019.
 //
+//utility and helper program including file reading, environment setting, and etc.
 
 #ifndef GENETICALGORITHM_UTILS_HPP
 #define GENETICALGORITHM_UTILS_HPP
@@ -27,6 +28,7 @@ struct configure {
     friend ostream &operator<<(ostream &os, const configure &configure);
 };
 
+//structure including report items
 struct report {
     int iteration;
     tour elite_tour;
@@ -36,7 +38,6 @@ struct report {
     double step_improvement;
 
     report(int iteration, const tour &eliteTour, bool isImproved, double improvement);
-
     report(int iteration, const tour &eliteTour, bool isImproved, double improvement, bool stepImproved,
            double stepImprovement);
 };
@@ -44,6 +45,7 @@ struct report {
 //util methods
 void readConfig(string & filename, configure & cfg);
 
+//helper functions for printing
 void print_city(city candidate);
 void print_tour(tour t);
 void print_report(report r);

@@ -1,6 +1,7 @@
 //
 // Created by humbl on 11/13/2019.
 //
+// city class including city name and its coordinates
 
 #ifndef GENETICALGORITHM_CITY_HPP
 #define GENETICALGORITHM_CITY_HPP
@@ -14,8 +15,11 @@ class city {
 private:
     //sequence no of cities
     static int counter;
+    //city ID number
     int number;
+    //city name
     string name;
+    //coordinates
     pair<double, double> coordinates;
     friend ostream& operator<<(ostream& out, const city& s);
     friend bool operator==(const city& lhs, const city& rhs);

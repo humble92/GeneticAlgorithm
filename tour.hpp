@@ -1,6 +1,7 @@
 //
 // Created by humbl on 11/24/2019.
 //
+// tour class including all cities in a route and total distance
 
 #ifndef GENETICALGORITHM_TOUR_HPP
 #define GENETICALGORITHM_TOUR_HPP
@@ -10,7 +11,9 @@
 
 class tour {
 private:
+    //all cities in a tour route
     vector<city> city_list;
+    //total tour distance
     double total_mileage;
     friend bool operator< (const tour& lhs, const tour& rhs);
     friend bool operator> (const tour& lhs, const tour& rhs);
